@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 
 my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
-st.dataframe(my_fruit_list)
 
 st.title('My Parents New Healthy Diner')
 
@@ -13,3 +12,6 @@ st.text("\U0001F957 Kale, Spinach and Rocket Smoothie")
 st.text("\U0001F414 Hard-Boiled Free-Range Egg")
 st.text("\U0001F951 \U0001F35E Avocado Toast")
 st.text("\U0001F347 \U0001F350 \U0001F352 Some fruit")
+
+st.header("\U0001F34C \U0001F353 Build Your Own Fruit Smoothie \U0001F95D \U0001F347")
+st.dataframe(my_fruit_list)
