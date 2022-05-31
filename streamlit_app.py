@@ -6,7 +6,8 @@ my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/da
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
 #Let's put a pick list here so the users can pick the fruit they want to include
-st.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado','Strawberries'])
+fruit_selected = st.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado','Strawberries'])
+fruit_to_show = my_fruit_list.loc[fruit_selected]
 
 #Display the table on the page
 st.dataframe(my_fruit_list)
@@ -20,4 +21,4 @@ st.text("\U0001F951 \U0001F35E Avocado Toast")
 st.text("\U0001F347 \U0001F350 \U0001F352 Some fruit")
 
 #st.header("\U0001F34C \U0001F353 Build Your Own Fruit Smoothie \U0001F95D \U0001F347")
-#st.dataframe(my_fruit_list)
+#st.dataframe(fruit_to_show)
