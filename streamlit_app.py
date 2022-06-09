@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import requests
 
 st.title('My Parents New Healthy Diner')
 my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
@@ -20,3 +21,7 @@ st.text("\U0001F347 \U0001F350 \U0001F352 Some fruit")
 st.header("\U0001F34C \U0001F353 Build Your Own Fruit Smoothie \U0001F95D \U0001F347")
 #Display the table on the page
 st.dataframe(fruit_to_show)
+# New Section to display fruityvice api response
+
+fruity_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
