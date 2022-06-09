@@ -23,5 +23,5 @@ st.header("\U0001F34C \U0001F353 Build Your Own Fruit Smoothie \U0001F95D \U0001
 st.dataframe(fruit_to_show)
 # New Section to display fruityvice api response
 
-fruity_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 st.text(fruityvice_response)
