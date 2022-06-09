@@ -22,6 +22,6 @@ st.header("\U0001F34C \U0001F353 Build Your Own Fruit Smoothie \U0001F95D \U0001
 #Display the table on the page
 st.dataframe(fruit_to_show)
 # New Section to display fruityvice api response
-
+st.header('Fruityvice Fruit Advice!')
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
+st.text(fruityvice_response.json())
