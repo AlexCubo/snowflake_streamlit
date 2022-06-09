@@ -21,9 +21,14 @@ st.text("\U0001F347 \U0001F350 \U0001F352 Some fruit")
 st.header("\U0001F34C \U0001F353 Build Your Own Fruit Smoothie \U0001F95D \U0001F347")
 #Display the table on the page
 st.dataframe(fruit_to_show)
+
 # New Section to display fruityvice api response
 st.header('Fruityvice Fruit Advice!')
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+#create an Entry box
+fruit_choice = st.text_input('What fruit would you like information about?', 'kiwi')
+st.write('The user entered', fruit_choice)
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 ## st.text(fruityvice_response.json()) # just writes the data to the screen, not formatted
 # take the json version of the response and format it 
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
