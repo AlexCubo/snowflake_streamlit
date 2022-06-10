@@ -36,6 +36,9 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 st.dataframe(fruityvice_normalized)
 
+# stop streamlit to avoid loading unwanted data in snowflake
+st.stop()
+
 # Let's query our Snowflake Trial Account Metadata
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cur = my_cnx.cursor()
