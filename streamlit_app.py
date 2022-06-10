@@ -82,4 +82,11 @@ if st.button('Add Fruit'):
   msg = insert_row_snowflake(my_cnx, my_fruit)
   my_cnx.close()
   st.text(msg)
+  
+fruit_to_remove = st.text_input('What fruit would you like to remove?')
+if st.button('Remove Fruit'):
+  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+  msg = remove_row_snowflake(my_cnx, fruit_to_remove)
+  my_cnx.close()
+  st.text(msg)
              
