@@ -37,7 +37,8 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 st.dataframe(fruityvice_normalized)
 
 # stop streamlit to avoid loading unwanted data in snowflake
-#st.stop()
+# all code after streamlit.stop() will be ignored
+st.stop()
 
 # Let's query our Snowflake Trial Account Metadata
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
