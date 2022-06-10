@@ -45,8 +45,10 @@ st.text(my_data_row)
 
 # Let's query some data instead
 my_cur.execute("select * from fruit_load_list")
-my_data_row = my_cur.fetchmany(3)
-st.text("The fruit load list contains the following fruits:")
+n_fruits = 3
+my_data_row = my_cur.fetchmany(n_fruits)
+st.text("The fruit load list contains many fruits.")
+st.text("The first", n_fruits, "are:")
 st.text(my_data_row)
 
 
