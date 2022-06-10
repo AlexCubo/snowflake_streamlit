@@ -55,14 +55,15 @@ try:
 except URLError as e:
   st.error()
 
-st.header("The FRUIT_LOAD_LIST table contains many fruits.")
+st.header("View Our Fruit List - Add Your Favorites!")
 # n_fruits = 3
 #st.text('The first {} fruits are:'.format(n_fruits))
 #st.dataframe(my_data_row)
 
-if st.button('Get FRUIT_LOAD_LIST'):
+if st.button('Fruits List'):
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   fruit_list = get_fruit_load_list(my_cnx)
+  my_cnx.close()
   st.dataframe(fruit_list)
 
 # stop streamlit to avoid loading unwanted data in snowflake
@@ -70,8 +71,9 @@ if st.button('Get FRUIT_LOAD_LIST'):
 #st.stop() 
   
 my_fruit = st.text_input('What fruit would you like to add?')
-if st.button('Add a fruit to FRUIT_LOAD_LIST table'):
+if st.button('Add Fruit'):
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   msg = insert_row_snowflake(my_cnx, my_fruit)
+  my_cnx.close()
   st.text(msg)
              
