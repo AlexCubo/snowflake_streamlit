@@ -6,6 +6,7 @@ from urllib.error import URLError # library used in the Control of Flow
 
 # help function definition
 def get_fruityvice_data(fruit_choice):
+  st.text("Barbun!")
   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
   fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
