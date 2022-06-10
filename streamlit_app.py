@@ -45,7 +45,7 @@ my_cur = my_cnx.cursor()
 
 # Let's query some data instead
 my_cur.execute("select * from fruit_load_list")
-n_fruits = 5
+n_fruits = 2
 my_data_row = my_cur.fetchmany(n_fruits)
 st.header("The FRUIT_LOAD_LIST table contains many fruits.")
 st.text('The first {} fruits are:'.format(n_fruits))
