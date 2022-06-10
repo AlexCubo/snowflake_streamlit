@@ -51,6 +51,9 @@ st.header("The FRUIT_LOAD_LIST table contains many fruits.")
 st.text('The first {} fruits are:'.format(n_fruits))
 st.dataframe(my_data_row)
 
+all_fruits = my_cur.fetchall()
+st.dataframe(all_fruits)
+
 
 
 
