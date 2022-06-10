@@ -54,6 +54,9 @@ st.header("The FRUIT_LOAD_LIST table contains many fruits.")
 all_fruits = my_cur.fetchall()
 st.dataframe(all_fruits)
 
+fruit_choice = st.text_input('What fruit would you like to add?')
+st.write('Thanks for adding', fruit_choice)
+
 
 
 
