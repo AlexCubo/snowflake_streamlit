@@ -28,14 +28,16 @@ st.dataframe(fruit_to_show)
 # New Section to display fruityvice api response
 st.header('Fruityvice Fruit Advice!')
 #create an Entry box
-fruit_choice = st.text_input('What fruit would you like information about?', 'kiwi')
-st.write('The user entered', fruit_choice)
-
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-## st.text(fruityvice_response.json()) # just writes the data to the screen, not formatted
-# take the json version of the response and format it 
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-st.dataframe(fruityvice_normalized)
+try:
+  fruit_choice = st.text_input('What fruit would you like information about?')
+  if not fruit_choice:
+    st.error("Please select a fruit to get information")
+  else:
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+    st.dataframe(fruityvice_normalized)
+ except UR;Error as e:
+  st.error()
 
 # stop streamlit to avoid loading unwanted data in snowflake
 # all code after streamlit.stop() will be ignored
