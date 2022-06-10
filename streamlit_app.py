@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import snowflake.connector
 
-st.title('My Parents New Healthy Diner')
+st.title('My Mom\'s New Healthy Diner')
 my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
