@@ -54,8 +54,11 @@ st.header("The FRUIT_LOAD_LIST table contains many fruits.")
 all_fruits = my_cur.fetchall()
 st.dataframe(all_fruits)
 
-fruit_choice = st.text_input('What fruit would you like to add?', '...')
-st.write('Thanks for adding', fruit_choice)
+my_fruit = st.text_input('What fruit would you like to add?', '...')
+st.write('Thanks for adding', my_fruit)
+
+# Try to insert in the table FRUIT_LOAD_LIST another fruit, from streamlit
+my_cur.execute("insert into PC_RIVERY_DATABASE.PUBLIC.FRUIT_LOAD_LIST values ('st_fruit')")
 
 
 
