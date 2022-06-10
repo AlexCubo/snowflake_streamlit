@@ -67,7 +67,7 @@ if st.button('Get FRUIT_LOAD_LIST'):
 
 # stop streamlit to avoid loading unwanted data in snowflake
 # all code after streamlit.stop() will be ignored
-st.stop() 
+#st.stop() 
   
 my_fruit = st.text_input('What fruit would you like to add?')
 if st.button('Add a fruit to FRUIT_LOAD_LIST table'):
