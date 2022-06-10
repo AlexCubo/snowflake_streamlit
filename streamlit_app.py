@@ -16,9 +16,11 @@ def get_fruit_load_list(my_cnx):
     my_cur.execute("select * from PC_RIVERY_DATABASE.PUBLIC.FRUIT_LOAD_LIST")
     return my_cur.fetchall()
 
-
-
-
+def insert_row_snowflake(cnx, new_fruit):
+  with cnx.cursor() as my_cur:
+    my_cur.execute("insert into PC_RIVERY_DATABASE.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit')")
+    return "Thanks for adding " + new_fruit
+  
 st.title('My Mom\'s New Healthy Diner')
 my_fruit_list = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
@@ -67,12 +69,9 @@ if st.button('Get FRUIT_LOAD_LIST'):
 # all code after streamlit.stop() will be ignored
 st.stop() 
   
-my_fruit = st.text_input('What fruit would you like to add?', '...')
-st.write('Thanks for adding', my_fruit)
-
-# Try to insert in the table FRUIT_LOAD_LIST another fruit, from streamlit
-my_cur.execute("insert into PC_RIVERY_DATABASE.PUBLIC.FRUIT_LOAD_LIST values ('st_fruit')")
-
-
-
-
+my_fruit = st.text_input('What fruit would you like to add?')
+if st.button('Add a fruit to FRUIT_LOAD_LIST table'):
+  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+  msg = insert_row_snowflake(my_cnx, my_fruit)
+  st.text(msg)
+             
