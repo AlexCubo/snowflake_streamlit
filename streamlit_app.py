@@ -38,18 +38,18 @@ st.dataframe(fruityvice_normalized)
 # Let's query our Snowflake Trial Account Metadata
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_data_row = my_cur.fetchone()
-st.text("Hello from Snowflake:")
-st.text(my_data_row)
+##my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+##my_data_row = my_cur.fetchone()
+##st.text("Hello from Snowflake:")
+##st.text(my_data_row)
 
 # Let's query some data instead
 my_cur.execute("select * from fruit_load_list")
 n_fruits = 3
 my_data_row = my_cur.fetchmany(n_fruits)
-st.text("The FRUIT_LOAD_LIST table contains many fruits.")
+st.header("The FRUIT_LOAD_LIST table contains many fruits.")
 st.text('The first {} fruits are:'.format(n_fruits))
-st.text(my_data_row)
+st.dataframe(my_data_row)
 
 
 
