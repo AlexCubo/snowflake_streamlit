@@ -11,6 +11,11 @@ def get_fruityvice_data(fruit_choice):
   fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
 
+def get_fruit_load_list(my_cnx):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("select * from PC_RIVERY_DATABASE.PUBLIC.FRUIT_LOAD_LIST")
+    return my_cur.fetchall()
+
 
 
 
@@ -48,29 +53,20 @@ try:
 except URLError as e:
   st.error()
 
-# stop streamlit to avoid loading unwanted data in snowflake
-# all code after streamlit.stop() will be ignored
-st.stop()
-
-# Let's query our Snowflake Trial Account Metadata
-my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-##my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-##my_data_row = my_cur.fetchone()
-##st.text("Hello from Snowflake:")
-##st.text(my_data_row)
-
-# Let's query some data instead
-my_cur.execute("select * from fruit_load_list")
-#n_fruits = 2
-#my_data_row = my_cur.fetchmany(n_fruits)
 st.header("The FRUIT_LOAD_LIST table contains many fruits.")
+# n_fruits = 3
 #st.text('The first {} fruits are:'.format(n_fruits))
 #st.dataframe(my_data_row)
 
-all_fruits = my_cur.fetchall()
-st.dataframe(all_fruits)
+if st.button('Get FRUIT_LOAD_LIST'):
+  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+  fruit_list = get_fruit_load_list(my_cnx)
+  st.dataframe(fruit_list)
 
+# stop streamlit to avoid loading unwanted data in snowflake
+# all code after streamlit.stop() will be ignored
+st.stop() 
+  
 my_fruit = st.text_input('What fruit would you like to add?', '...')
 st.write('Thanks for adding', my_fruit)
 
