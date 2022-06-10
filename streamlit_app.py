@@ -22,7 +22,7 @@ def insert_row_snowflake(cnx, new_fruit):
     return "Thanks for adding " + new_fruit
   
 def remove_row_snowflake(cnx, fruit_to_remove):
-  with cnx.cursor as my_cur:
+  with cnx.cursor() as my_cur:
     my_cur.execute("delete from PC_RIVERY_DATABASE.PUBLIC.FRUIT_LOAD_LIST \
                     where FRUIT_NAME = '"+ fruit_to_remove +"'")
     return fruit_to_remove + " has been removed"
