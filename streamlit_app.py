@@ -48,7 +48,7 @@ my_cur.execute("select * from fruit_load_list")
 n_fruits = 3
 my_data_row = my_cur.fetchmany(n_fruits)
 st.text("The fruit load list contains many fruits.")
-st.text('The first {}'.format(n_fruits), 'fruits are')
+st.text('The first {} fruits are:'.format(n_fruits))
 st.text(my_data_row)
 
 
